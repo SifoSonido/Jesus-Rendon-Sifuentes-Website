@@ -657,6 +657,7 @@
     <div id="topUtilityBar" class="utility-bar">
       <div class="util-flex" style="display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap;">
         <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button type="button" id="toggleLangBtn" class="util-btn" onclick="toggleLanguage()" aria-label="Switch Language">[Español]</button>
           <button type="button" id="toggleLabelsBtn" class="util-btn util-btn-orange" onclick="toggleOrangeLabels()">[Oranges]</button>
         </div>
       </div>
@@ -687,14 +688,14 @@
 
             <!-- Center Prompt if Preview Sandbox Cannot Access Your Local Hard Drive -->
             <div id="logoPromptOverlay" style="display: none; padding: 28px 20px; text-align: center; max-width: 440px; z-index: 4;">
-              <div style="font-size: 20px; font-weight: bold; color: #2C3116; margin-bottom: 6px;">discos Rendon &mdash; Logo Slot</div>
-              <p style="font-size: 14px; color: #333333; margin: 0 0 12px 0;">
+              <div style="font-size: 20px; font-weight: bold; color: #2C3116; margin-bottom: 6px;">discos Rendon &mdash; <span data-en="Logo Slot" data-es="Espacio de Logotipo">Logo Slot</span></div>
+              <p style="font-size: 14px; color: #333333; margin: 0 0 12px 0;" data-en="The browser preview cannot directly read local files off your computer until you select or drop your image file:" data-es="La vista previa del navegador no puede leer archivos locales directamente hasta que selecciones o arrastres tu archivo de imagen:">
                 The browser preview cannot directly read local files off your computer until you select or drop your image file:
               </p>
-              <button type="button" class="util-btn" style="font-size: 13px; padding: 6px 12px; font-weight: bold;" onclick="document.getElementById('logoUploadInput').click()">
+              <button type="button" class="util-btn" style="font-size: 13px; padding: 6px 12px; font-weight: bold;" onclick="document.getElementById('logoUploadInput').click()" data-en="[ Click Here to Select Your Logo File ]" data-es="[ Haz Clic Aquí para Seleccionar tu Logotipo ]">
                 [ Click Here to Select Your Logo File ]
               </button>
-              <div class="mono" style="font-size: 11px; color: #555555; margin-top: 8px;">
+              <div class="mono" style="font-size: 11px; color: #555555; margin-top: 8px;" data-en="Supports PNG, JPG, SVG, or WebP • Or drag & drop onto this box" data-es="Compatible con PNG, JPG, SVG o WebP • O arrastra y suelta aquí">
                 Supports PNG, JPG, SVG, or WebP &bull; Or drag &amp; drop onto this box
               </div>
             </div>
@@ -704,10 +705,10 @@
                class="orange-hotspot side-left"
                style="top: 22.5%; left: 39.5%;"
                aria-label="About and Profile"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/about.html — About & Profile (Jesus Rendon-Sifuentes)')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/about.html — Acerca de y Perfil (Jesús Rendón-Sifuentes)' : 'http://www.discosrendon.com/about.html — About & Profile (Jesus Rendon-Sifuentes)')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('about'); return false;">
-              <span class="orange-tag">About &amp; Profile</span>
+              <span class="orange-tag" data-en="About & Profile" data-es="Acerca de y Perfil">About &amp; Profile</span>
             </a>
 
             <!-- ROW 1 (UPPER CANOPY ORANGES) — RIGHT: EXPERIENCE (Exact Orange at ~22.5% Y, 58.2% X) -->
@@ -715,10 +716,10 @@
                class="orange-hotspot side-right"
                style="top: 22.5%; left: 58.2%;"
                aria-label="Professional Experience"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/experience.html — Live Sound, Studio & AV Work Experience')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/experience.html — Experiencia en Sonido en Vivo, Estudio y AV' : 'http://www.discosrendon.com/experience.html — Live Sound, Studio & AV Work Experience')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('experience'); return false;">
-              <span class="orange-tag">Experience</span>
+              <span class="orange-tag" data-en="Experience" data-es="Experiencia">Experience</span>
             </a>
 
             <!-- ROW 2 (MIDDLE CANOPY ORANGES) — LEFT: EDUCATION (Exact Orange at ~34.5% Y, 40.8% X) -->
@@ -726,10 +727,10 @@
                class="orange-hotspot side-left"
                style="top: 34.5%; left: 40.8%;"
                aria-label="Education and Coursework"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/education.html — Berklee College of Music & Coursework')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/education.html — Berklee College of Music y Formación Académica' : 'http://www.discosrendon.com/education.html — Berklee College of Music & Coursework')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('education'); return false;">
-              <span class="orange-tag">Education</span>
+              <span class="orange-tag" data-en="Education" data-es="Educación">Education</span>
             </a>
 
             <!-- ROW 2 (MIDDLE CANOPY ORANGES) — RIGHT: TECHNICAL SKILLS (Exact Orange at ~32.5% Y, 60.1% X) -->
@@ -737,10 +738,10 @@
                class="orange-hotspot side-right"
                style="top: 32.5%; left: 60.1%;"
                aria-label="Technical Skills and Gear"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/skills.html — Consoles, DAWs, Spatial Audio & Electronics')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/skills.html — Consolas, DAWs, Audio Espacial y Electrónica' : 'http://www.discosrendon.com/skills.html — Consoles, DAWs, Spatial Audio & Electronics')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('skills'); return false;">
-              <span class="orange-tag">Technical Skills</span>
+              <span class="orange-tag" data-en="Technical Skills" data-es="Habilidades Técnicas">Technical Skills</span>
             </a>
 
             <!-- ROW 3 (LOWER CANOPY ORANGES) — LEFT: PORTFOLIO (Exact Orange at ~44.8% Y, 33.2% X) -->
@@ -748,10 +749,10 @@
                class="orange-hotspot side-left"
                style="top: 44.8%; left: 33.2%;"
                aria-label="Portfolio"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/portfolio.html — Audio Electronics & Music Production Portfolio')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/portfolio.html — Portafolio de Electrónica de Audio y Producción Musical' : 'http://www.discosrendon.com/portfolio.html — Audio Electronics & Music Production Portfolio')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('portfolio'); return false;">
-              <span class="orange-tag">Portfolio</span>
+              <span class="orange-tag" data-en="Portfolio" data-es="Portafolio">Portfolio</span>
             </a>
 
             <!-- ROW 3 (LOWER CANOPY ORANGES) — RIGHT: CONTACT (Exact Orange at ~44.6% Y, 63.5% X) -->
@@ -759,10 +760,10 @@
                class="orange-hotspot side-right"
                style="top: 44.6%; left: 63.5%;"
                aria-label="Contact and Inquiries"
-               onmouseenter="setTreeStatus('http://www.discosrendon.com/contact.html — Direct Contact & Studio Booking')"
+               onmouseenter="setTreeStatus(currentLang === 'es' ? 'http://www.discosrendon.com/contact.html — Contacto Directo y Contrataciones de Estudio' : 'http://www.discosrendon.com/contact.html — Direct Contact & Studio Booking')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('contact'); return false;">
-              <span class="orange-tag">Contact</span>
+              <span class="orange-tag" data-en="Contact" data-es="Contacto">Contact</span>
             </a>
           </div>
         </div>
@@ -773,32 +774,32 @@
            ==================================================================== -->
       <section id="view-about" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; About &amp; Profile
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="About & Profile" data-es="Acerca de y Perfil">About &amp; Profile</span>
         </div>
 
-        <h2 class="page-heading">About &amp; Profile</h2>
+        <h2 class="page-heading" data-en="About & Profile" data-es="Acerca de y Perfil">About &amp; Profile</h2>
 
         <div class="visual-asset" style="max-width: 240px; margin: 14px auto 10px auto; text-align: center;">
           <div class="img-slot-box" style="border: 2px solid #4B5128; background-color: #EFECE0; padding: 4px; width: 100%; text-align: center;" onclick="document.getElementById('portraitUploadInput').click()" ondragover="event.preventDefault()" ondrop="handleImageDrop(event, 'portrait')" title="Click or drop a photo to update your portrait">
             <img id="portraitImg" src="https://i.postimg.cc/vBz84GT9/IMG-6146.jpg" alt="Jesus Rendon-Sifuentes Portrait" class="hi-res-img" style="width: 100%; margin: 0 auto;" onload="document.getElementById('portraitFallbackNote').style.display='none';" onerror="handleImageFallback(this, 'portrait')">
             <div id="portraitFallbackNote" style="display: none; padding: 20px 8px; font-family: 'Courier New', Courier, monospace; font-size: 11.5px; color: #2C3116;">
-              <b>[PORTRAIT SLOT]</b><br><br>
-              Click or drop your photo here
+              <b data-en="[PORTRAIT SLOT]" data-es="[ESPACIO DE RETRATO]">[PORTRAIT SLOT]</b><br><br>
+              <span data-en="Click or drop your photo here" data-es="Haz clic o arrastra tu foto aquí">Click or drop your photo here</span>
             </div>
           </div>
           <div class="site-subtitle" style="text-align: center; font-size: 13.5px; margin-top: 6px;">
             Jesus Rendon-Sifuentes<br>
-            Audio Engineer | Music Producer
+            <span data-en="Audio Engineer | Music Producer" data-es="Ingeniero de Audio | Productor Musical">Audio Engineer | Music Producer</span>
           </div>
         </div>
 
-        <h3 class="section-sub">Short Professional Summary</h3>
-        <p>
+        <h3 class="section-sub" data-en="Short Professional Summary" data-es="Resumen Profesional">Short Professional Summary</h3>
+        <p data-en="Versatile Audio Engineer, Music Producer, and Live Sound Specialist with a Bachelor of Music in Music Production & Engineering from <b>Berklee College of Music</b>. Founder of <b>Discos Rendon</b>, bringing hands-on expertise across Front-of-House (FOH) and monitor mixing, large-format analog/digital studio recording, Dolby Atmos spatial mixing, podcast post-production, and audio electronics diagnostics." data-es="Ingeniero de Audio, Productor Musical y Especialista en Sonido en Vivo versátil con licenciatura en Producción Musical e Ingeniería por <b>Berklee College of Music</b>. Fundador de <b>Discos Rendon</b>, con experiencia práctica en mezcla de sala (FOH) y monitores, grabación en estudio analógico y digital de gran formato, mezcla espacial Dolby Atmos, postproducción de podcasts y diagnóstico de electrónica de audio.">
           Versatile Audio Engineer, Music Producer, and Live Sound Specialist with a Bachelor of Music in Music Production &amp; Engineering from <b>Berklee College of Music</b>. Founder of <b>Discos Rendon</b>, bringing hands-on expertise across Front-of-House (FOH) and monitor mixing, large-format analog/digital studio recording, Dolby Atmos spatial mixing, podcast post-production, and audio electronics diagnostics.
         </p>
 
-        <h3 class="section-sub">Roots &amp; Musical Heritage</h3>
-        <p>
+        <h3 class="section-sub" data-en="Roots & Musical Heritage" data-es="Raíces y Herencia Musical">Roots &amp; Musical Heritage</h3>
+        <p data-en="Rooted in the vibrant cross-border musical traditions of <b>South Texas (Rio Grande Valley)</b> and shaped by intensive studio and live performance environments across <b>Boston, Massachusetts</b> and <b>New York City</b>, Jesus founded <b>Discos Rendon</b> in honor of classic independent record labels and the orange groves of South Texas. His bilingual English/Spanish background and appreciation for warm analog timbre guide every live show, recording session, and custom hardware build." data-es="Arraigado en las vibrantes tradiciones musicales fronterizas del <b>Sur de Texas (Valle del Río Grande)</b> y formado en entornos intensivos de estudio y presentaciones en vivo en <b>Boston, Massachusetts</b> y la <b>Ciudad de Nueva York</b>, Jesús fundó <b>Discos Rendon</b> en honor a los sellos discográficos independientes clásicos y a los naranjales del Sur de Texas. Su formación bilingüe en inglés y español y su aprecio por el timbre analógico cálido guían cada espectáculo en vivo, sesión de grabación y diseño de hardware personalizado.">
           Rooted in the vibrant cross-border musical traditions of <b>South Texas (Rio Grande Valley)</b> and shaped by intensive studio and live performance environments across <b>Boston, Massachusetts</b> and <b>New York City</b>, Jesus founded <b>Discos Rendon</b> in honor of classic independent record labels and the orange groves of South Texas. His bilingual English/Spanish background and appreciation for warm analog timbre guide every live show, recording session, and custom hardware build.
         </p>
       </section>
@@ -808,77 +809,77 @@
            ==================================================================== -->
       <section id="view-experience" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; Professional Experience
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</span>
         </div>
 
-        <h2 class="page-heading">Professional Experience</h2>
-        <div class="site-subtitle">Live Sound Engineering, Studio Production, Theatrical Audio, Podcast &amp; AV Systems</div>
+        <h2 class="page-heading" data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</h2>
+        <div class="site-subtitle" data-en="Live Sound Engineering, Studio Production, Theatrical Audio, Podcast & AV Systems" data-es="Ingeniería de Sonido en Vivo, Producción de Estudio, Audio Teatral, Podcast y Sistemas AV">Live Sound Engineering, Studio Production, Theatrical Audio, Podcast &amp; AV Systems</div>
 
         <div style="margin-top: 12px;">
           <div class="role-entry">
-            <div class="role-title">Live Sound Engineer &mdash; Caf Shows</div>
+            <div class="role-title" data-en="Live Sound Engineer — Caf Shows" data-es="Ingeniero de Sonido en Vivo — Caf Shows">Live Sound Engineer &mdash; Caf Shows</div>
             <div class="role-org">Berklee College of Music</div>
-            <div class="role-meta">Boston, MA &bull; Sept. 2026 &ndash; May 2027 &bull; Part-Time</div>
+            <div class="role-meta" data-en="Boston, MA • Sept. 2026 – May 2027 • Part-Time" data-es="Boston, MA • Sept. 2026 – Mayo 2027 • Medio Tiempo">Boston, MA &bull; Sept. 2026 &ndash; May 2027 &bull; Part-Time</div>
             <ul class="classic-list">
-              <li>Operate and pre-program <b>Midas M32</b> mixing console and software alongside <b>ChamSys QuickQ 30</b> lighting console and software.</li>
-              <li>Configure input routing from stagebox tie lines/snakes to mixing console, and output routing to monitor wedges or in-ear monitors (IEMs).</li>
-              <li>Record, organize, and archive live multitrack <b>Logic Pro X</b> sessions for delivery to performing artists.</li>
-              <li>Mic instruments and amplifiers including drum kits, orchestral and auxiliary percussion, wind ensembles, string sections, vocalists, acoustic and electric guitars, electric and upright bass, and organs; route stereo and mono DI boxes for keyboards, computers, and instruments.</li>
-              <li>Hold weekly office hours and production meetings; prepare line input/output lists, stage plots, and lighting cue sheets; manage FOH security, cables, and cable ramps.</li>
+              <li data-en="Operate and pre-program <b>Midas M32</b> mixing console and software alongside <b>ChamSys QuickQ 30</b> lighting console and software." data-es="Operar y preprogramar la consola de mezcla y el software <b>Midas M32</b> junto con la consola y el software de iluminación <b>ChamSys QuickQ 30</b>.">Operate and pre-program <b>Midas M32</b> mixing console and software alongside <b>ChamSys QuickQ 30</b> lighting console and software.</li>
+              <li data-en="Configure input routing from stagebox tie lines/snakes to mixing console, and output routing to monitor wedges or in-ear monitors (IEMs)." data-es="Configurar el enrutamiento de entradas desde las líneas de escenario (stagebox/snakes) hacia la consola de mezcla, y el enrutamiento de salidas hacia monitores de piso o monitores in-ear (IEMs).">Configure input routing from stagebox tie lines/snakes to mixing console, and output routing to monitor wedges or in-ear monitors (IEMs).</li>
+              <li data-en="Record, organize, and archive live multitrack <b>Logic Pro X</b> sessions for delivery to performing artists." data-es="Grabar, organizar y archivar sesiones multipista en vivo en <b>Logic Pro X</b> para su entrega a los artistas.">Record, organize, and archive live multitrack <b>Logic Pro X</b> sessions for delivery to performing artists.</li>
+              <li data-en="Mic instruments and amplifiers including drum kits, orchestral and auxiliary percussion, wind ensembles, string sections, vocalists, acoustic and electric guitars, electric and upright bass, and organs; route stereo and mono DI boxes for keyboards, computers, and instruments." data-es="Microfonear instrumentos y amplificadores incluyendo baterías, percusión orquestal y auxiliar, ensambles de viento, secciones de cuerdas, vocalistas, guitarras acústicas y eléctricas, bajo eléctrico y contrabajo, y órganos; enrutar cajas directas (DI) estéreo y mono para teclados, computadoras e instrumentos.">Mic instruments and amplifiers including drum kits, orchestral and auxiliary percussion, wind ensembles, string sections, vocalists, acoustic and electric guitars, electric and upright bass, and organs; route stereo and mono DI boxes for keyboards, computers, and instruments.</li>
+              <li data-en="Hold weekly office hours and production meetings; prepare line input/output lists, stage plots, and lighting cue sheets; manage FOH security, cables, and cable ramps." data-es="Realizar horas de oficina semanales y reuniones de producción; preparar listas de entradas/salidas, stage plots y hojas de cues de iluminación; gestionar la seguridad de FOH, el cableado y las rampas para cables.">Hold weekly office hours and production meetings; prepare line input/output lists, stage plots, and lighting cue sheets; manage FOH security, cables, and cable ramps.</li>
             </ul>
           </div>
 
           <div class="role-entry">
-            <div class="role-title">Freelance Recording, Mixing, and Mastering Engineer</div>
+            <div class="role-title" data-en="Freelance Recording, Mixing, and Mastering Engineer" data-es="Ingeniero Independiente de Grabación, Mezcla y Masterización">Freelance Recording, Mixing, and Mastering Engineer</div>
             <div class="role-org">The Record Co.</div>
-            <div class="role-meta">Boston, MA &bull; Sept. 2023 &ndash; Present</div>
+            <div class="role-meta" data-en="Boston, MA • Sept. 2023 – Present" data-es="Boston, MA • Sept. 2023 – Presente">Boston, MA &bull; Sept. 2023 &ndash; Present</div>
             <ul class="classic-list">
-              <li>Run recording sessions, including microphone selection and placement, analog tape setup and biasing, outboard gear patching, and <b>Pro Tools</b> session management.</li>
-              <li>Collaborate with independent artists across genres to produce, record, mix, and master original music from pre-production through final delivery.</li>
-              <li>Edit and correct vocal and instrumental tracks for timing, pitch, and tonal consistency; implement custom sound design for music production and project-specific audio needs.</li>
-              <li>Deliver mono, stereo, and spatial/immersive audio mixing and mastering to client quality standards and deadlines; maintain studio equipment and organize digital audio file distribution, backups, and archiving.</li>
+              <li data-en="Run recording sessions, including microphone selection and placement, analog tape setup and biasing, outboard gear patching, and <b>Pro Tools</b> session management." data-es="Dirigir sesiones de grabación, incluyendo selección y colocación de micrófonos, calibración y ajuste de bias en cinta analógica, parcheo de equipos externos (outboard) y gestión de sesiones en <b>Pro Tools</b>.">Run recording sessions, including microphone selection and placement, analog tape setup and biasing, outboard gear patching, and <b>Pro Tools</b> session management.</li>
+              <li data-en="Collaborate with independent artists across genres to produce, record, mix, and master original music from pre-production through final delivery." data-es="Colaborar con artistas independientes de diversos géneros para producir, grabar, mezclar y masterizar música original desde la preproducción hasta la entrega final.">Collaborate with independent artists across genres to produce, record, mix, and master original music from pre-production through final delivery.</li>
+              <li data-en="Edit and correct vocal and instrumental tracks for timing, pitch, and tonal consistency; implement custom sound design for music production and project-specific audio needs." data-es="Editar y corregir pistas vocales e instrumentales en tiempo, afinación y consistencia tonal; implementar diseño sonoro personalizado para producción musical y necesidades específicas de cada proyecto.">Edit and correct vocal and instrumental tracks for timing, pitch, and tonal consistency; implement custom sound design for music production and project-specific audio needs.</li>
+              <li data-en="Deliver mono, stereo, and spatial/immersive audio mixing and mastering to client quality standards and deadlines; maintain studio equipment and organize digital audio file distribution, backups, and archiving." data-es="Entregar mezclas y masterizaciones en mono, estéreo y audio espacial/inmersivo cumpliendo con los estándares de calidad y plazos del cliente; mantener el equipo de estudio y organizar la distribución, respaldo y archivo de audio digital.">Deliver mono, stereo, and spatial/immersive audio mixing and mastering to client quality standards and deadlines; maintain studio equipment and organize digital audio file distribution, backups, and archiving.</li>
             </ul>
           </div>
 
           <div class="role-entry">
-            <div class="role-title">Front-of-House Mixer &amp; Audio Engineer &mdash; <i>The Addams Family</i> &amp; Superhuman Arts Club</div>
+            <div class="role-title" data-en="Front-of-House Mixer & Audio Engineer — <i>The Addams Family</i> & Superhuman Arts Club" data-es="Mezclador de Sala (FOH) e Ingeniero de Audio — <i>The Addams Family</i> y Superhuman Arts Club">Front-of-House Mixer &amp; Audio Engineer &mdash; <i>The Addams Family</i> &amp; Superhuman Arts Club</div>
             <div class="role-org">Boston Center for the Arts</div>
-            <div class="role-meta">Boston, MA &bull; December 2025</div>
+            <div class="role-meta" data-en="Boston, MA • December 2025" data-es="Boston, MA • Diciembre 2025">Boston, MA &bull; December 2025</div>
             <ul class="classic-list">
-              <li>Served as Front-of-House (FOH) sound engineer and mixer for the theatrical production of <i>The Addams Family</i> and productions with the Superhuman Arts Club at Berklee.</li>
-              <li>Managed live mixing of vocals, instruments, and sound effects for balanced coverage across audience seating; set up and maintained microphones, mixers, PA systems, and signal routing.</li>
-              <li>Collaborated with the production team during rehearsals and performances and troubleshot live audio issues in real time.</li>
+              <li data-en="Served as Front-of-House (FOH) sound engineer and mixer for the theatrical production of <i>The Addams Family</i> and productions with the Superhuman Arts Club at Berklee." data-es="Se desempeñó como ingeniero de sonido y mezclador de sala (FOH) para la producción teatral de <i>The Addams Family</i> y producciones con Superhuman Arts Club en Berklee.">Served as Front-of-House (FOH) sound engineer and mixer for the theatrical production of <i>The Addams Family</i> and productions with the Superhuman Arts Club at Berklee.</li>
+              <li data-en="Managed live mixing of vocals, instruments, and sound effects for balanced coverage across audience seating; set up and maintained microphones, mixers, PA systems, and signal routing." data-es="Gestionó la mezcla en vivo de voces, instrumentos y efectos de sonido para lograr una cobertura equilibrada en toda la audiencia; instaló y mantuvo micrófonos, consolas, sistemas de PA y enrutamiento de señal.">Managed live mixing of vocals, instruments, and sound effects for balanced coverage across audience seating; set up and maintained microphones, mixers, PA systems, and signal routing.</li>
+              <li data-en="Collaborated with the production team during rehearsals and performances and troubleshot live audio issues in real time." data-es="Colaboró con el equipo de producción durante ensayos y funciones, resolviendo problemas de audio en vivo en tiempo real.">Collaborated with the production team during rehearsals and performances and troubleshot live audio issues in real time.</li>
             </ul>
           </div>
 
           <div class="role-entry">
-            <div class="role-title">Audio Engineer (Remote Internship)</div>
+            <div class="role-title" data-en="Audio Engineer (Remote Internship)" data-es="Ingeniero de Audio (Pasantía Remota)">Audio Engineer (Remote Internship)</div>
             <div class="role-org">Nucleate</div>
-            <div class="role-meta">Boston, MA &bull; Sept. 2025 &ndash; Dec. 2025</div>
+            <div class="role-meta" data-en="Boston, MA • Sept. 2025 – Dec. 2025" data-es="Boston, MA • Sept. 2025 – Dic. 2025">Boston, MA &bull; Sept. 2025 &ndash; Dec. 2025</div>
             <ul class="classic-list">
-              <li>Edited, mixed, and mastered audio, speech, and music for weekly entrepreneurial biotech podcast episodes, meeting fixed release deadlines.</li>
-              <li>Collaborated with Social Media and Video/Visual Media Editorial teams to align production status with marketing and release schedules.</li>
-              <li>Organized audiovisual archives to support efficient access, backup integrity, and long-term project continuity.</li>
+              <li data-en="Edited, mixed, and mastered audio, speech, and music for weekly entrepreneurial biotech podcast episodes, meeting fixed release deadlines." data-es="Editó, mezcló y masterizó audio, diálogos y música para episodios semanales de podcast sobre biotecnología y emprendimiento, cumpliendo fechas de lanzamiento fijas.">Edited, mixed, and mastered audio, speech, and music for weekly entrepreneurial biotech podcast episodes, meeting fixed release deadlines.</li>
+              <li data-en="Collaborated with Social Media and Video/Visual Media Editorial teams to align production status with marketing and release schedules." data-es="Colaboró con los equipos editoriales de Redes Sociales y Video/Medios Visuales para alinear el estado de producción con los calendarios de lanzamiento y marketing.">Collaborated with Social Media and Video/Visual Media Editorial teams to align production status with marketing and release schedules.</li>
+              <li data-en="Organized audiovisual archives to support efficient access, backup integrity, and long-term project continuity." data-es="Organizó archivos audiovisuales para garantizar un acceso eficiente, integridad de respaldos y continuidad de proyectos a largo plazo.">Organized audiovisual archives to support efficient access, backup integrity, and long-term project continuity.</li>
             </ul>
           </div>
 
           <div class="role-entry">
-            <div class="role-title">Freelance Live Sound &amp; AV Technician</div>
+            <div class="role-title" data-en="Freelance Live Sound & AV Technician" data-es="Técnico Independiente de Sonido en Vivo y AV">Freelance Live Sound &amp; AV Technician</div>
             <div class="role-org">Casa Del Rey Christian Church</div>
-            <div class="role-meta">Brownsville, TX &bull; May 2025 &ndash; Sept. 2025 &bull; Freelance</div>
+            <div class="role-meta" data-en="Brownsville, TX • May 2025 – Sept. 2025 • Freelance" data-es="Brownsville, TX • Mayo 2025 – Sept. 2025 • Independiente">Brownsville, TX &bull; May 2025 &ndash; Sept. 2025 &bull; Freelance</div>
             <ul class="classic-list">
-              <li>Recorded and mixed weekly church services and sermons for online distribution and livestream platforms; provided FOH and monitor mixing for choir performances and services.</li>
-              <li>Supported video and AV systems including ADJ LED wall panels, camera systems, fiber-optic and Ethernet connections, network switches, and livestream graphics cued via <b>Novastar VX45</b>.</li>
-              <li>Installed and operated MIDI-controlled lighting and spotlights programmed via <b>ShowXpress</b>; tested, repaired, and maintained PA systems, power amplifiers, IEMs, and playback monitors.</li>
+              <li data-en="Recorded and mixed weekly church services and sermons for online distribution and livestream platforms; provided FOH and monitor mixing for choir performances and services." data-es="Grabó y mezcló servicios semanales y sermones para distribución en línea y plataformas de transmisión en vivo; realizó mezclas de sala (FOH) y monitores para coros y servicios.">Recorded and mixed weekly church services and sermons for online distribution and livestream platforms; provided FOH and monitor mixing for choir performances and services.</li>
+              <li data-en="Supported video and AV systems including ADJ LED wall panels, camera systems, fiber-optic and Ethernet connections, network switches, and livestream graphics cued via <b>Novastar VX45</b>." data-es="Brindó soporte a sistemas de video y AV incluyendo pantallas LED ADJ, sistemas de cámaras, conexiones de fibra óptica y Ethernet, switches de red y gráficos en vivo controlados mediante <b>Novastar VX45</b>.">Supported video and AV systems including ADJ LED wall panels, camera systems, fiber-optic and Ethernet connections, network switches, and livestream graphics cued via <b>Novastar VX45</b>.</li>
+              <li data-en="Installed and operated MIDI-controlled lighting and spotlights programmed via <b>ShowXpress</b>; tested, repaired, and maintained PA systems, power amplifiers, IEMs, and playback monitors." data-es="Instaló y operó iluminación y reflectores controlados por MIDI programados mediante <b>ShowXpress</b>; probó, reparó y mantuvo sistemas de PA, amplificadores de potencia, IEMs y monitores de reproducción.">Installed and operated MIDI-controlled lighting and spotlights programmed via <b>ShowXpress</b>; tested, repaired, and maintained PA systems, power amplifiers, IEMs, and playback monitors.</li>
             </ul>
           </div>
 
           <div class="role-entry">
-            <div class="role-title">Front-of-House Engineer &amp; Playback Monitor Technician</div>
+            <div class="role-title" data-en="Front-of-House Engineer & Playback Monitor Technician" data-es="Ingeniero de Sala (FOH) y Técnico de Monitores de Playback">Front-of-House Engineer &amp; Playback Monitor Technician</div>
             <div class="role-org">Harvard Graduate School of Education</div>
-            <div class="role-meta">Boston, MA &bull; May 2025 &bull; Contract</div>
+            <div class="role-meta" data-en="Boston, MA • May 2025 • Contract" data-es="Boston, MA • Mayo 2025 • Contrato">Boston, MA &bull; May 2025 &bull; Contract</div>
             <ul class="classic-list">
-              <li>Delivered Front-of-House (FOH) mixing and playback monitoring for the School Founders of the World&rsquo;s <i>&ldquo;Human Transformation in a Time of Meta Crisis&rdquo;</i> conference concert series.</li>
+              <li data-en="Delivered Front-of-House (FOH) mixing and playback monitoring for the School Founders of the World’s <i>“Human Transformation in a Time of Meta Crisis”</i> conference concert series." data-es="Realizó la mezcla de sala (FOH) y monitoreo de playback para la serie de conciertos de la conferencia <i>“Human Transformation in a Time of Meta Crisis”</i> de School Founders of the World.">Delivered Front-of-House (FOH) mixing and playback monitoring for the School Founders of the World&rsquo;s <i>&ldquo;Human Transformation in a Time of Meta Crisis&rdquo;</i> conference concert series.</li>
             </ul>
           </div>
         </div>
@@ -889,80 +890,80 @@
            ==================================================================== -->
       <section id="view-education" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; Education &amp; Coursework
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="Education & Coursework" data-es="Educación y Cursos">Education &amp; Coursework</span>
         </div>
 
-        <h2 class="page-heading">Education &amp; Coursework</h2>
-        <div class="site-subtitle">Academic Training in Independent Recording, Production, Acoustics &amp; Electronics</div>
+        <h2 class="page-heading" data-en="Education & Coursework" data-es="Educación y Cursos">Education &amp; Coursework</h2>
+        <div class="site-subtitle" data-en="Academic Training in Independent Recording, Production, Acoustics & Electronics" data-es="Formación Académica en Grabación Independiente, Producción, Acústica y Electrónica">Academic Training in Independent Recording, Production, Acoustics &amp; Electronics</div>
 
         <table class="spec-table" style="margin-top: 12px;">
           <tr>
-            <th width="28%">Institution</th>
-            <td><b>Berklee College of Music</b> &mdash; Boston, MA (Sept. 2023 &ndash; May 2027)</td>
+            <th width="28%" data-en="Institution" data-es="Institución">Institution</th>
+            <td data-en="<b>Berklee College of Music</b> — Boston, MA (Sept. 2023 – May 2027)" data-es="<b>Berklee College of Music</b> — Boston, MA (Sept. 2023 – Mayo 2027)"><b>Berklee College of Music</b> &mdash; Boston, MA (Sept. 2023 &ndash; May 2027)</td>
           </tr>
           <tr>
-            <th>Degree &amp; Minor</th>
-            <td>Bachelor of Arts in <b>Independent Recording &amp; Production</b>, Department of Music Production &amp; Engineering &bull; Minor in <b>Acoustics and Electronics</b></td>
+            <th data-en="Degree & Minor" data-es="Título y Especialidad">Degree &amp; Minor</th>
+            <td data-en="Bachelor of Arts in <b>Independent Recording & Production</b>, Department of Music Production & Engineering • Minor in <b>Acoustics and Electronics</b>" data-es="Licenciatura en <b>Grabación y Producción Independiente</b>, Departamento de Producción Musical e Ingeniería • Especialidad (Minor) en <b>Acústica y Electrónica</b>">Bachelor of Arts in <b>Independent Recording &amp; Production</b>, Department of Music Production &amp; Engineering &bull; Minor in <b>Acoustics and Electronics</b></td>
           </tr>
           <tr>
-            <th>Honors &amp; Awards</th>
-            <td><b>Thrive Scholarship Recipient</b> (2024 &ndash; Present) &bull; <b>Dean&rsquo;s List</b> (Spring 2025 &amp; Spring 2026)</td>
+            <th data-en="Honors & Awards" data-es="Honores y Premios">Honors &amp; Awards</th>
+            <td data-en="<b>Thrive Scholarship Recipient</b> (2024 – Present) • <b>Dean’s List</b> (Spring 2025 & Spring 2026)" data-es="<b>Becario Thrive Scholarship</b> (2024 – Presente) • <b>Lista del Decano (Dean’s List)</b> (Primavera 2025 y Primavera 2026)"><b>Thrive Scholarship Recipient</b> (2024 &ndash; Present) &bull; <b>Dean&rsquo;s List</b> (Spring 2025 &amp; Spring 2026)</td>
           </tr>
           <tr>
-            <th>Study Abroad</th>
-            <td><b>Berklee Valencia</b> &mdash; Ciudad de las Artes y las Ciencias, Valencia, Spain (First Year Abroad: Fall 2023 &ndash; Spring 2024; Study Abroad: Spring 2026)</td>
+            <th data-en="Study Abroad" data-es="Estudios en el Extranjero">Study Abroad</th>
+            <td data-en="<b>Berklee Valencia</b> — Ciudad de las Artes y las Ciencias, Valencia, Spain (First Year Abroad: Fall 2023 – Spring 2024; Study Abroad: Spring 2026)" data-es="<b>Berklee Valencia</b> — Ciudad de las Artes y las Ciencias, Valencia, España (Primer Año en el Extranjero: Otoño 2023 – Primavera 2024; Intercambio: Primavera 2026)"><b>Berklee Valencia</b> &mdash; Ciudad de las Artes y las Ciencias, Valencia, Spain (First Year Abroad: Fall 2023 &ndash; Spring 2024; Study Abroad: Spring 2026)</td>
           </tr>
           <tr>
-            <th>Secondary Education</th>
-            <td><b>James Nikki Rowe High School</b> &mdash; McAllen, TX (Graduated May 2023) &bull; <i>Magna Cum Laude</i>, Music &amp; Business Concentrations</td>
+            <th data-en="Secondary Education" data-es="Educación Preparatoria">Secondary Education</th>
+            <td data-en="<b>James Nikki Rowe High School</b> — McAllen, TX (Graduated May 2023) • <i>Magna Cum Laude</i>, Music & Business Concentrations" data-es="<b>James Nikki Rowe High School</b> — McAllen, TX (Graduado en Mayo 2023) • <i>Magna Cum Laude</i>, Concentraciones en Música y Negocios"><b>James Nikki Rowe High School</b> &mdash; McAllen, TX (Graduated May 2023) &bull; <i>Magna Cum Laude</i>, Music &amp; Business Concentrations</td>
           </tr>
           <tr>
-            <th>Certifications</th>
+            <th data-en="Certifications" data-es="Certificaciones">Certifications</th>
             <td>
-              <span class="cert-tag">Dante Level 1 &amp; 2 Certifications (2025&ndash;2028)</span>
+              <span class="cert-tag" data-en="Dante Level 1 & 2 Certifications (2025–2028)" data-es="Certificaciones Dante Nivel 1 y 2 (2025–2028)">Dante Level 1 &amp; 2 Certifications (2025&ndash;2028)</span>
             </td>
           </tr>
         </table>
 
-        <h3 class="section-sub">Major Coursework (Independent Recording &amp; Production)</h3>
+        <h3 class="section-sub" data-en="Major Coursework (Independent Recording & Production)" data-es="Cursos Principales (Grabación y Producción Independiente)">Major Coursework (Independent Recording &amp; Production)</h3>
         <table class="spec-table">
           <thead>
             <tr>
-              <th width="26%">Course Code</th>
-              <th width="74%">Course Title</th>
+              <th width="26%" data-en="Course Code" data-es="Código">Course Code</th>
+              <th width="74%" data-en="Course Title" data-es="Nombre del Curso">Course Title</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="mono"><b>MP-113</b></td><td>Accelerated Pro Tools</td></tr>
-            <tr><td class="mono"><b>IR-209</b></td><td>Audio and Studio Principles</td></tr>
-            <tr><td class="mono"><b>IR-205</b></td><td>Recording &amp; Mixing Techniques</td></tr>
-            <tr><td class="mono"><b>IR-346</b></td><td>Advanced Recording &amp; Editing Techniques</td></tr>
-            <tr><td class="mono"><b>IR-223 &ndash; 224</b></td><td>Audio MIDI Production 1 &amp; 2</td></tr>
-            <tr><td class="mono"><b>IR-331</b></td><td>Vocal Production Techniques</td></tr>
-            <tr><td class="mono"><b>IR-410</b></td><td>Mastering and Delivery</td></tr>
-            <tr><td class="mono"><b>IR-447</b></td><td>Business of Independent Music Production</td></tr>
+            <tr><td class="mono"><b>MP-113</b></td><td data-en="Accelerated Pro Tools" data-es="Pro Tools Acelerado">Accelerated Pro Tools</td></tr>
+            <tr><td class="mono"><b>IR-209</b></td><td data-en="Audio and Studio Principles" data-es="Principios de Audio y Estudio">Audio and Studio Principles</td></tr>
+            <tr><td class="mono"><b>IR-205</b></td><td data-en="Recording & Mixing Techniques" data-es="Técnicas de Grabación y Mezcla">Recording &amp; Mixing Techniques</td></tr>
+            <tr><td class="mono"><b>IR-346</b></td><td data-en="Advanced Recording & Editing Techniques" data-es="Técnicas Avanzadas de Grabación y Edición">Advanced Recording &amp; Editing Techniques</td></tr>
+            <tr><td class="mono"><b>IR-223 &ndash; 224</b></td><td data-en="Audio MIDI Production 1 & 2" data-es="Producción de Audio y MIDI 1 y 2">Audio MIDI Production 1 &amp; 2</td></tr>
+            <tr><td class="mono"><b>IR-331</b></td><td data-en="Vocal Production Techniques" data-es="Técnicas de Producción Vocal">Vocal Production Techniques</td></tr>
+            <tr><td class="mono"><b>IR-410</b></td><td data-en="Mastering and Delivery" data-es="Masterización y Entrega">Mastering and Delivery</td></tr>
+            <tr><td class="mono"><b>IR-447</b></td><td data-en="Business of Independent Music Production" data-es="Negocios de la Producción Musical Independiente">Business of Independent Music Production</td></tr>
           </tbody>
         </table>
 
-        <h3 class="section-sub">Minor Coursework (Acoustics &amp; Electronics)</h3>
+        <h3 class="section-sub" data-en="Minor Coursework (Acoustics & Electronics)" data-es="Cursos de Especialidad (Acústica y Electrónica)">Minor Coursework (Acoustics &amp; Electronics)</h3>
         <table class="spec-table">
           <thead>
             <tr>
-              <th width="26%">Course Code</th>
-              <th width="74%">Course Title</th>
+              <th width="26%" data-en="Course Code" data-es="Código">Course Code</th>
+              <th width="74%" data-en="Course Title" data-es="Nombre del Curso">Course Title</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="mono"><b>LMSC-208</b></td><td>Music Acoustics</td></tr>
-            <tr><td class="mono"><b>LMSC-210</b></td><td>Principles of Audio Electronics</td></tr>
-            <tr><td class="mono"><b>LMSC-261</b></td><td>Introduction to Computer Programming</td></tr>
-            <tr><td class="mono"><b>MTEC-220</b></td><td>Sound Reinforcement Systems</td></tr>
-            <tr><td class="mono"><b>MTEC-308</b></td><td>Applications of Loudspeaker Design</td></tr>
-            <tr><td class="mono"><b>MTEC-309</b></td><td>Applications of Audio Amplifiers</td></tr>
-            <tr><td class="mono"><b>MTEC-351</b></td><td>Applications of Microphone Design</td></tr>
-            <tr><td class="mono"><b>MTEC-360</b></td><td>Architecture and Acoustics of Critical Listening Environments (taught by John Storyk of WSDG)</td></tr>
-            <tr><td class="mono"><b>MTEC-383</b></td><td>Studio Maintenance &amp; Troubleshooting</td></tr>
-            <tr><td class="mono"><b>MTI-304</b></td><td>Live Sound &amp; Stage Craft</td></tr>
+            <tr><td class="mono"><b>LMSC-208</b></td><td data-en="Music Acoustics" data-es="Acústica Musical">Music Acoustics</td></tr>
+            <tr><td class="mono"><b>LMSC-210</b></td><td data-en="Principles of Audio Electronics" data-es="Principios de Electrónica de Audio">Principles of Audio Electronics</td></tr>
+            <tr><td class="mono"><b>LMSC-261</b></td><td data-en="Introduction to Computer Programming" data-es="Introducción a la Programación">Introduction to Computer Programming</td></tr>
+            <tr><td class="mono"><b>MTEC-220</b></td><td data-en="Sound Reinforcement Systems" data-es="Sistemas de Refuerzo Sonoro">Sound Reinforcement Systems</td></tr>
+            <tr><td class="mono"><b>MTEC-308</b></td><td data-en="Applications of Loudspeaker Design" data-es="Aplicaciones de Diseño de Altavoces">Applications of Loudspeaker Design</td></tr>
+            <tr><td class="mono"><b>MTEC-309</b></td><td data-en="Applications of Audio Amplifiers" data-es="Aplicaciones de Amplificadores de Audio">Applications of Audio Amplifiers</td></tr>
+            <tr><td class="mono"><b>MTEC-351</b></td><td data-en="Applications of Microphone Design" data-es="Aplicaciones de Diseño de Micrófonos">Applications of Microphone Design</td></tr>
+            <tr><td class="mono"><b>MTEC-360</b></td><td data-en="Architecture and Acoustics of Critical Listening Environments (taught by John Storyk of WSDG)" data-es="Arquitectura y Acústica de Entornos de Escucha Crítica (impartido por John Storyk de WSDG)">Architecture and Acoustics of Critical Listening Environments (taught by John Storyk of WSDG)</td></tr>
+            <tr><td class="mono"><b>MTEC-383</b></td><td data-en="Studio Maintenance & Troubleshooting" data-es="Mantenimiento y Diagnóstico de Estudio">Studio Maintenance &amp; Troubleshooting</td></tr>
+            <tr><td class="mono"><b>MTI-304</b></td><td data-en="Live Sound & Stage Craft" data-es="Sonido en Vivo y Técnica Escénica">Live Sound &amp; Stage Craft</td></tr>
           </tbody>
         </table>
       </section>
@@ -972,39 +973,39 @@
            ==================================================================== -->
       <section id="view-skills" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; Technical Skills &amp; Gear
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="Technical Skills & Gear" data-es="Habilidades Técnicas y Equipo">Technical Skills &amp; Gear</span>
         </div>
 
-        <h2 class="page-heading">Technical Skills &amp; Gear</h2>
-        <div class="site-subtitle">DAWs, Consoles, Spatial Audio, Live Sound &amp; AV Systems, and Audio Electronics</div>
+        <h2 class="page-heading" data-en="Technical Skills & Gear" data-es="Habilidades Técnicas y Equipo">Technical Skills &amp; Gear</h2>
+        <div class="site-subtitle" data-en="DAWs, Consoles, Spatial Audio, Live Sound & AV Systems, and Audio Electronics" data-es="DAWs, Consolas, Audio Espacial, Sonido en Vivo y Sistemas AV, y Electrónica de Audio">DAWs, Consoles, Spatial Audio, Live Sound &amp; AV Systems, and Audio Electronics</div>
 
         <table class="spec-table" style="margin-top: 12px;">
           <thead>
             <tr>
-              <th width="30%">Category</th>
-              <th width="70%">Systems, Software &amp; Hardware Proficiency</th>
+              <th width="30%" data-en="Category" data-es="Categoría">Category</th>
+              <th width="70%" data-en="Systems, Software & Hardware Proficiency" data-es="Dominio de Sistemas, Software y Hardware">Systems, Software &amp; Hardware Proficiency</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>DAWs &amp; Studio Production</b></td>
-              <td>Pro Tools, Ableton Live, Logic Pro X; recording, editing, analog/digital/hybrid mixing, mastering, sound design, immersive/spatial audio, and Dolby Atmos</td>
+              <td><b data-en="DAWs & Studio Production" data-es="DAWs y Producción en Estudio">DAWs &amp; Studio Production</b></td>
+              <td data-en="Pro Tools, Ableton Live, Logic Pro X; recording, editing, analog/digital/hybrid mixing, mastering, sound design, immersive/spatial audio, and Dolby Atmos" data-es="Pro Tools, Ableton Live, Logic Pro X; grabación, edición, mezcla analógica/digital/híbrida, masterización, diseño sonoro, audio inmersivo/espacial y Dolby Atmos">Pro Tools, Ableton Live, Logic Pro X; recording, editing, analog/digital/hybrid mixing, mastering, sound design, immersive/spatial audio, and Dolby Atmos</td>
             </tr>
             <tr>
-              <td><b>Recording &amp; Live Consoles</b></td>
-              <td>Neve, Solid State Logic (SSL), Avid S6, API, Yamaha, Behringer, Midas (M32), and Allen &amp; Heath; analog tape setup and biasing</td>
+              <td><b data-en="Recording & Live Consoles" data-es="Consolas de Grabación y Vivo">Recording &amp; Live Consoles</b></td>
+              <td data-en="Neve, Solid State Logic (SSL), Avid S6, API, Yamaha, Behringer, Midas (M32), and Allen & Heath; analog tape setup and biasing" data-es="Neve, Solid State Logic (SSL), Avid S6, API, Yamaha, Behringer, Midas (M32) y Allen & Heath; calibración y ajuste de cinta analógica">Neve, Solid State Logic (SSL), Avid S6, API, Yamaha, Behringer, Midas (M32), and Allen &amp; Heath; analog tape setup and biasing</td>
             </tr>
             <tr>
-              <td><b>Live Sound &amp; AV Systems</b></td>
-              <td>FOH &amp; monitor mixing, stage plots, input/output lists, lighting cue sheets (ChamSys QuickQ 30, ShowXpress), PA systems, in-ear monitors (IEMs), playback systems, ADJ LED walls, Novastar VX45, fiber-optic &amp; Ethernet networking</td>
+              <td><b data-en="Live Sound & AV Systems" data-es="Sonido en Vivo y Sistemas AV">Live Sound &amp; AV Systems</b></td>
+              <td data-en="FOH & monitor mixing, stage plots, input/output lists, lighting cue sheets (ChamSys QuickQ 30, ShowXpress), PA systems, in-ear monitors (IEMs), playback systems, ADJ LED walls, Novastar VX45, fiber-optic & Ethernet networking" data-es="Mezcla de sala (FOH) y monitores, stage plots, listas de entradas/salidas, hojas de cues de iluminación (ChamSys QuickQ 30, ShowXpress), sistemas PA, monitores in-ear (IEMs), sistemas de playback, pantallas LED ADJ, Novastar VX45, redes de fibra óptica y Ethernet">FOH &amp; monitor mixing, stage plots, input/output lists, lighting cue sheets (ChamSys QuickQ 30, ShowXpress), PA systems, in-ear monitors (IEMs), playback systems, ADJ LED walls, Novastar VX45, fiber-optic &amp; Ethernet networking</td>
             </tr>
             <tr>
-              <td><b>Audio Electronics &amp; Test Bench</b></td>
-              <td>Soldering, oscilloscope operation, reading audio-electronics schematics, Word Clock coordination, acoustics, and troubleshooting/repair of speakers, amplifiers, signal processors, radios, microphones, and cables</td>
+              <td><b data-en="Audio Electronics & Test Bench" data-es="Electrónica de Audio y Banco de Pruebas">Audio Electronics &amp; Test Bench</b></td>
+              <td data-en="Soldering, oscilloscope operation, reading audio-electronics schematics, Word Clock coordination, acoustics, and troubleshooting/repair of speakers, amplifiers, signal processors, radios, microphones, and cables" data-es="Soldadura, operación de osciloscopio, lectura de esquemas de electrónica de audio, coordinación de Word Clock, acústica y diagnóstico/reparación de altavoces, amplificadores, procesadores de señal, radios, micrófonos y cables">Soldering, oscilloscope operation, reading audio-electronics schematics, Word Clock coordination, acoustics, and troubleshooting/repair of speakers, amplifiers, signal processors, radios, microphones, and cables</td>
             </tr>
             <tr>
-              <td><b>Visuals &amp; Workflow</b></td>
-              <td>Microphone techniques for instruments and vocals; photography and digital/analog camera operation; bilingual English/Spanish collaboration, project coordination, and time management</td>
+              <td><b data-en="Visuals & Workflow" data-es="Visuales y Flujo de Trabajo">Visuals &amp; Workflow</b></td>
+              <td data-en="Microphone techniques for instruments and vocals; photography and digital/analog camera operation; bilingual English/Spanish collaboration, project coordination, and time management" data-es="Técnicas de microfonía para instrumentos y voces; fotografía y operación de cámaras digitales y analógicas; colaboración bilingüe inglés/español, coordinación de proyectos y gestión del tiempo">Microphone techniques for instruments and vocals; photography and digital/analog camera operation; bilingual English/Spanish collaboration, project coordination, and time management</td>
             </tr>
           </tbody>
         </table>
@@ -1015,32 +1016,32 @@
            ==================================================================== -->
       <section id="view-portfolio" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; Portfolio
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="Portfolio" data-es="Portafolio">Portfolio</span>
         </div>
 
-        <h2 class="page-heading">Portfolio</h2>
-        <div class="site-subtitle">Audio Electronics, Studio Recording, Mixing, Mastering &amp; Live Production</div>
+        <h2 class="page-heading" data-en="Portfolio" data-es="Portafolio">Portfolio</h2>
+        <div class="site-subtitle" data-en="Audio Electronics, Studio Recording, Mixing, Mastering & Live Production" data-es="Electrónica de Audio, Grabación en Estudio, Mezcla, Masterización y Producción en Vivo">Audio Electronics, Studio Recording, Mixing, Mastering &amp; Live Production</div>
 
         <!-- 1994 Portfolio Subtabs -->
         <div class="hyper-nav" style="border: 1px solid #C7BCA7; margin-top: 12px; text-align: left; padding: 6px 10px;" role="tablist" aria-label="Portfolio Subtabs">
-          <span class="mono" style="font-size: 11.5px; color: #4B5128; font-weight: bold;">SUBTABS:</span>
-          <a href="#portfolio" id="ptab-all" class="current-page" onclick="selectPortfolioTab('all'); return false;">All Work</a> |
-          <a href="#portfolio" id="ptab-studio" onclick="selectPortfolioTab('studio'); return false;">Studio &amp; Mixing</a> |
-          <a href="#portfolio" id="ptab-electronics" onclick="selectPortfolioTab('electronics'); return false;">Audio Electronics</a> |
-          <a href="#portfolio" id="ptab-live" onclick="selectPortfolioTab('live'); return false;">Live Sound &amp; AV</a> |
-          <a href="#portfolio" id="ptab-post" onclick="selectPortfolioTab('post'); return false;">Podcast &amp; Post</a> |
-          <a href="#portfolio" id="ptab-photography" onclick="selectPortfolioTab('photography'); return false;">Photography</a>
+          <span class="mono" style="font-size: 11.5px; color: #4B5128; font-weight: bold;" data-en="SUBTABS:" data-es="PESTAÑAS:">SUBTABS:</span>
+          <a href="#portfolio" id="ptab-all" class="current-page" onclick="selectPortfolioTab('all'); return false;" data-en="All Work" data-es="Todo">All Work</a> |
+          <a href="#portfolio" id="ptab-studio" onclick="selectPortfolioTab('studio'); return false;" data-en="Studio & Mixing" data-es="Estudio y Mezcla">Studio &amp; Mixing</a> |
+          <a href="#portfolio" id="ptab-electronics" onclick="selectPortfolioTab('electronics'); return false;" data-en="Audio Electronics" data-es="Electrónica de Audio">Audio Electronics</a> |
+          <a href="#portfolio" id="ptab-live" onclick="selectPortfolioTab('live'); return false;" data-en="Live Sound & AV" data-es="Sonido en Vivo y AV">Live Sound &amp; AV</a> |
+          <a href="#portfolio" id="ptab-post" onclick="selectPortfolioTab('post'); return false;" data-en="Podcast & Post" data-es="Podcast y Post">Podcast &amp; Post</a> |
+          <a href="#portfolio" id="ptab-photography" onclick="selectPortfolioTab('photography'); return false;" data-en="Photography" data-es="Fotografía">Photography</a>
         </div>
 
         <table class="spec-table" style="margin-top: 10px;">
           <tr>
-            <th width="28%">Portfolio Archive</th>
+            <th width="28%" data-en="Portfolio Archive" data-es="Archivo de Portafolio">Portfolio Archive</th>
             <td>
-              <a href="https://drive.google.com/drive/folders/1NbRwqC0EJVMUTe_d0MzDDaWpVv-XEKUC?usp=sharing" target="_blank" rel="noopener noreferrer"><b>Audio Electronics &amp; Music Production Portfolio (Google Drive)</b></a>
+              <a href="https://drive.google.com/drive/folders/1NbRwqC0EJVMUTe_d0MzDDaWpVv-XEKUC?usp=sharing" target="_blank" rel="noopener noreferrer"><b data-en="Audio Electronics & Music Production Portfolio (Google Drive)" data-es="Portafolio de Electrónica de Audio y Producción Musical (Google Drive)">Audio Electronics &amp; Music Production Portfolio (Google Drive)</b></a>
             </td>
           </tr>
           <tr>
-            <th>Formats &amp; Media</th>
+            <th data-en="Formats & Media" data-es="Formatos y Medios">Formats &amp; Media</th>
             <td id="portfolioFormatsCell">Multitrack Sessions, Stereo &amp; Dolby Atmos Mixes, Hardware Builds, Schematics &amp; Live Recordings</td>
           </tr>
         </table>
@@ -1048,30 +1049,30 @@
         <table class="spec-table">
           <thead>
             <tr>
-              <th width="30%">Discipline</th>
-              <th width="70%">Featured Engineering &amp; Production Work</th>
+              <th width="30%" data-en="Discipline" data-es="Disciplina">Discipline</th>
+              <th width="70%" data-en="Featured Engineering & Production Work" data-es="Trabajo Destacado de Ingeniería y Producción">Featured Engineering &amp; Production Work</th>
             </tr>
           </thead>
           <tbody>
             <tr data-ptab="studio">
-              <td><b>Studio Recording &amp; Mixing</b></td>
-              <td>Tracking, analog tape biasing, hybrid outboard mixing, and stereo/spatial mastering across independent artist releases and studio sessions.</td>
+              <td><b data-en="Studio Recording & Mixing" data-es="Grabación y Mezcla en Estudio">Studio Recording &amp; Mixing</b></td>
+              <td data-en="Tracking, analog tape biasing, hybrid outboard mixing, and stereo/spatial mastering across independent artist releases and studio sessions." data-es="Grabación multipista, ajuste de cinta analógica, mezcla híbrida con equipo outboard y masterización estéreo/espacial en lanzamientos de artistas independientes y sesiones de estudio.">Tracking, analog tape biasing, hybrid outboard mixing, and stereo/spatial mastering across independent artist releases and studio sessions.</td>
             </tr>
             <tr data-ptab="electronics">
-              <td><b>Audio Electronics &amp; Acoustics</b></td>
-              <td>Custom audio circuit builds, amplifier/loudspeaker design coursework, schematic troubleshooting, and studio equipment maintenance.</td>
+              <td><b data-en="Audio Electronics & Acoustics" data-es="Electrónica de Audio y Acústica">Audio Electronics &amp; Acoustics</b></td>
+              <td data-en="Custom audio circuit builds, amplifier/loudspeaker design coursework, schematic troubleshooting, and studio equipment maintenance." data-es="Construcción de circuitos de audio personalizados, proyectos de diseño de amplificadores y altavoces, diagnóstico de esquemas y mantenimiento de equipos de estudio.">Custom audio circuit builds, amplifier/loudspeaker design coursework, schematic troubleshooting, and studio equipment maintenance.</td>
             </tr>
             <tr data-ptab="live">
-              <td><b>Live Sound &amp; Theatrical AV</b></td>
-              <td>FOH and monitor mixes, stage plots, I/O patch lists, lighting cue sheets, and multi-channel live concert captures.</td>
+              <td><b data-en="Live Sound & Theatrical AV" data-es="Sonido en Vivo y AV Teatral">Live Sound &amp; Theatrical AV</b></td>
+              <td data-en="FOH and monitor mixes, stage plots, I/O patch lists, lighting cue sheets, and multi-channel live concert captures." data-es="Mezclas de sala (FOH) y monitores, stage plots, listas de parcheo E/S, hojas de cues de iluminación y grabaciones multicanal de conciertos en vivo.">FOH and monitor mixes, stage plots, I/O patch lists, lighting cue sheets, and multi-channel live concert captures.</td>
             </tr>
             <tr data-ptab="post">
-              <td><b>Podcast &amp; Post-Production</b></td>
-              <td>Broadcast dialogue editing, sound design, loudness mastering, and archival delivery for weekly series.</td>
+              <td><b data-en="Podcast & Post-Production" data-es="Podcast y Postproducción">Podcast &amp; Post-Production</b></td>
+              <td data-en="Broadcast dialogue editing, sound design, loudness mastering, and archival delivery for weekly series." data-es="Edición de diálogos para transmisión, diseño sonoro, masterización de sonoridad y entrega de archivo para series semanales.">Broadcast dialogue editing, sound design, loudness mastering, and archival delivery for weekly series.</td>
             </tr>
             <tr data-ptab="photography">
-              <td><b>Photography</b></td>
-              <td>Live concert documentation, behind-the-scenes studio sessions, analog hardware close-ups, and visual storytelling.</td>
+              <td><b data-en="Photography" data-es="Fotografía">Photography</b></td>
+              <td data-en="Live concert documentation, behind-the-scenes studio sessions, analog hardware close-ups, and visual storytelling." data-es="Documentación de conciertos en vivo, sesiones de estudio detrás de cámaras, fotografía de detalle de hardware analógico y narrativa visual.">Live concert documentation, behind-the-scenes studio sessions, analog hardware close-ups, and visual storytelling.</td>
             </tr>
           </tbody>
         </table>
@@ -1082,19 +1083,19 @@
            ==================================================================== -->
       <section id="view-contact" class="subpage-view">
         <div class="breadcrumb">
-          <a href="#home" onclick="navigateTo('home'); return false;">Home</a> &gt; Contact &amp; Inquiries
+          <a href="#home" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> &gt; <span data-en="Contact & Inquiries" data-es="Contacto y Consultas">Contact &amp; Inquiries</span>
         </div>
 
-        <h2 class="page-heading">Contact &amp; Inquiries</h2>
-        <div class="site-subtitle">Bookings, Live Sound Engineering, Mixing, Mastering &amp; AV Consultation</div>
+        <h2 class="page-heading" data-en="Contact & Inquiries" data-es="Contacto y Consultas">Contact &amp; Inquiries</h2>
+        <div class="site-subtitle" data-en="Bookings, Live Sound Engineering, Mixing, Mastering & AV Consultation" data-es="Contrataciones, Ingeniería de Sonido en Vivo, Mezcla, Masterización y Consultoría AV">Bookings, Live Sound Engineering, Mixing, Mastering &amp; AV Consultation</div>
 
         <table class="spec-table">
           <tr>
-            <th width="28%">Location</th>
-            <td>New York City | South Texas | New England</td>
+            <th width="28%" data-en="Location" data-es="Ubicación">Location</th>
+            <td data-en="New York City | South Texas | New England" data-es="Ciudad de Nueva York | Sur de Texas | Nueva Inglaterra">New York City | South Texas | New England</td>
           </tr>
           <tr>
-            <th>Telephone</th>
+            <th data-en="Telephone" data-es="Teléfono">Telephone</th>
             <td>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 190 100" aria-label="United States Flag" style="vertical-align: -1px; margin-right: 6px; border: 1px solid #888888;">
                 <rect width="190" height="100" fill="#B22234"/>
@@ -1112,51 +1113,51 @@
             </td>
           </tr>
           <tr>
-            <th>Network</th>
+            <th data-en="Network" data-es="Red Profesional">Network</th>
             <td>
-              <a href="https://www.linkedin.com/in/jesusrendon-sifuentes/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+              <a href="https://www.linkedin.com/in/jesusrendon-sifuentes/" target="_blank" rel="noopener noreferrer" data-en="LinkedIn Profile" data-es="Perfil de LinkedIn">LinkedIn Profile</a>
             </td>
           </tr>
           <tr>
-            <th>Languages</th>
-            <td>English &amp; Spanish (Native proficiency)</td>
+            <th data-en="Languages" data-es="Idiomas">Languages</th>
+            <td data-en="English & Spanish (Native proficiency)" data-es="Inglés y Español (Dominio nativo)">English &amp; Spanish (Native proficiency)</td>
           </tr>
         </table>
 
         <!-- 1994 HTML INQUIRY FORM -->
-        <h3 class="section-sub">Send a Direct Studio / Booking Inquiry</h3>
+        <h3 class="section-sub" data-en="Send a Direct Studio / Booking Inquiry" data-es="Enviar una Consulta Directa de Estudio / Contratación">Send a Direct Studio / Booking Inquiry</h3>
         <form onsubmit="submitInquiryForm(event)" style="background-color: #F7F6F0; border: 1px solid #999999; padding: 12px;">
           <table width="100%" border="0" cellpadding="4" cellspacing="0">
             <tr>
-              <td width="28%"><b>Your Name:</b></td>
-              <td width="72%"><input type="text" id="inqName" class="classic-input" placeholder="e.g., Alex Rivera" required></td>
+              <td width="28%"><b data-en="Your Name:" data-es="Tu Nombre:">Your Name:</b></td>
+              <td width="72%"><input type="text" id="inqName" class="classic-input" placeholder="e.g., Alex Rivera" data-placeholder-en="e.g., Alex Rivera" data-placeholder-es="ej., Alex Rivera" required></td>
             </tr>
             <tr>
-              <td><b>Return E-Mail:</b></td>
-              <td><input type="email" id="inqEmail" class="classic-input" placeholder="e.g., alex@studio.com" required></td>
+              <td><b data-en="Return E-Mail:" data-es="Correo Electrónico:">Return E-Mail:</b></td>
+              <td><input type="email" id="inqEmail" class="classic-input" placeholder="e.g., alex@studio.com" data-placeholder-en="e.g., alex@studio.com" data-placeholder-es="ej., alex@estudio.com" required></td>
             </tr>
             <tr>
-              <td><b>Project / Service:</b></td>
+              <td><b data-en="Project / Service:" data-es="Proyecto / Servicio:">Project / Service:</b></td>
               <td>
                 <select id="inqService" class="classic-input">
-                  <option>Live Sound / FOH / Monitor Mixing</option>
-                  <option>Studio Recording / Tracking Session</option>
-                  <option>Mixing &amp; Mastering (Stereo / Spatial / Dolby Atmos)</option>
-                  <option>Podcast / Post-Production Audio</option>
-                  <option>AV Systems / Lighting / Electronics Maintenance</option>
-                  <option>General Questions</option>
+                  <option data-en="Live Sound / FOH / Monitor Mixing" data-es="Sonido en Vivo / FOH / Mezcla de Monitores">Live Sound / FOH / Monitor Mixing</option>
+                  <option data-en="Studio Recording / Tracking Session" data-es="Grabación en Estudio / Sesión de Tracking">Studio Recording / Tracking Session</option>
+                  <option data-en="Mixing & Mastering (Stereo / Spatial / Dolby Atmos)" data-es="Mezcla y Masterización (Estéreo / Espacial / Dolby Atmos)">Mixing &amp; Mastering (Stereo / Spatial / Dolby Atmos)</option>
+                  <option data-en="Podcast / Post-Production Audio" data-es="Podcast / Audio de Postproducción">Podcast / Post-Production Audio</option>
+                  <option data-en="AV Systems / Lighting / Electronics Maintenance" data-es="Sistemas AV / Iluminación / Mantenimiento Electrónico">AV Systems / Lighting / Electronics Maintenance</option>
+                  <option data-en="General Questions" data-es="Preguntas Generales">General Questions</option>
                 </select>
               </td>
             </tr>
             <tr>
-              <td valign="top"><b>Project Details:</b></td>
-              <td><textarea id="inqDetails" rows="3" class="classic-input" placeholder="Include dates, venue/studio location, and technical requirements..." required></textarea></td>
+              <td valign="top"><b data-en="Project Details:" data-es="Detalles del Proyecto:">Project Details:</b></td>
+              <td><textarea id="inqDetails" rows="3" class="classic-input" placeholder="Include dates, venue/studio location, and technical requirements..." data-placeholder-en="Include dates, venue/studio location, and technical requirements..." data-placeholder-es="Incluye fechas, ubicación del recinto o estudio y requerimientos técnicos..." required></textarea></td>
             </tr>
             <tr>
               <td></td>
               <td>
-                <button type="submit" class="util-btn" style="font-weight: bold;">[ Send Inquiry ]</button>
-                <button type="reset" class="util-btn" onclick="document.getElementById('inquiryFeedback').style.display='none'">[ Clear Form ]</button>
+                <button type="submit" class="util-btn" style="font-weight: bold;" data-en="[ Send Inquiry ]" data-es="[ Enviar Consulta ]">[ Send Inquiry ]</button>
+                <button type="reset" class="util-btn" onclick="document.getElementById('inquiryFeedback').style.display='none'" data-en="[ Clear Form ]" data-es="[ Limpiar Formulario ]">[ Clear Form ]</button>
               </td>
             </tr>
           </table>
@@ -1172,20 +1173,20 @@
       <div id="bottomSubpageNav" style="display: none;">
         <hr class="classic-hr">
         <nav class="hyper-nav" style="border: 1px solid #C7BCA7;" aria-label="Footer Directory Navigation">
-          [ <a href="#home" id="bot-nav-home" class="current-page" onclick="navigateTo('home'); return false;">Home</a> |
-          <a href="#about" id="bot-nav-about" onclick="navigateTo('about'); return false;">About</a> |
-          <a href="#experience" id="bot-nav-experience" onclick="navigateTo('experience'); return false;">Experience</a> |
-          <a href="#education" id="bot-nav-education" onclick="navigateTo('education'); return false;">Education</a> |
-          <a href="#skills" id="bot-nav-skills" onclick="navigateTo('skills'); return false;">Technical Skills</a> |
-          <a href="#portfolio" id="bot-nav-portfolio" onclick="navigateTo('portfolio'); return false;">Portfolio</a> |
-          <a href="#contact" id="bot-nav-contact" onclick="navigateTo('contact'); return false;">Contact</a> ]
+          [ <a href="#home" id="bot-nav-home" class="current-page" onclick="navigateTo('home'); return false;" data-en="Home" data-es="Inicio">Home</a> |
+          <a href="#about" id="bot-nav-about" onclick="navigateTo('about'); return false;" data-en="About" data-es="Acerca de">About</a> |
+          <a href="#experience" id="bot-nav-experience" onclick="navigateTo('experience'); return false;" data-en="Experience" data-es="Experiencia">Experience</a> |
+          <a href="#education" id="bot-nav-education" onclick="navigateTo('education'); return false;" data-en="Education" data-es="Educación">Education</a> |
+          <a href="#skills" id="bot-nav-skills" onclick="navigateTo('skills'); return false;" data-en="Technical Skills" data-es="Habilidades Técnicas">Technical Skills</a> |
+          <a href="#portfolio" id="bot-nav-portfolio" onclick="navigateTo('portfolio'); return false;" data-en="Portfolio" data-es="Portafolio">Portfolio</a> |
+          <a href="#contact" id="bot-nav-contact" onclick="navigateTo('contact'); return false;" data-en="Contact" data-es="Contacto">Contact</a> ]
         </nav>
       </div>
 
     </main>
 
     <!-- 1994 DOCUMENT FOOTER -->
-    <footer class="doc-footer">
+    <footer class="doc-footer" data-en="&copy; 2026 Discos Rendon &bull; Jesus Rendon-Sifuentes &bull; All Rights Reserved" data-es="&copy; 2026 Discos Rendon &bull; Jesús Rendón-Sifuentes &bull; Todos los Derechos Reservados">
       &copy; 2026 Discos Rendon &bull; Jesus Rendon-Sifuentes &bull; All Rights Reserved
     </footer>
 
@@ -1193,17 +1194,100 @@
 
   <script>
     /**
-     * 1. HASH-ROUTED MULTI-PAGE NAVIGATION (WITH BROWSER BACK/FORWARD SUPPORT)
+     * 1. HASH-ROUTED MULTI-PAGE NAVIGATION & BILINGUAL (EN / ES) TRANSLATION
      */
+    let currentLang = 'en';
+    let currentPortfolioTab = 'all';
+
     const PAGE_MAP = {
-      home: { filename: 'index.html', title: 'Discos Rendon — Jesus Rendon-Sifuentes | Audio Engineering & Music Production' },
-      about: { filename: 'about.html', title: 'About & Profile — Discos Rendon' },
-      experience: { filename: 'experience.html', title: 'Professional Experience — Discos Rendon' },
-      education: { filename: 'education.html', title: 'Education & Coursework — Discos Rendon' },
-      skills: { filename: 'skills.html', title: 'Technical Skills & Gear — Discos Rendon' },
-      portfolio: { filename: 'portfolio.html', title: 'Portfolio — Discos Rendon' },
-      contact: { filename: 'contact.html', title: 'Contact & Inquiries — Discos Rendon' }
+      home: {
+        filename: 'index.html',
+        titleEn: 'Discos Rendon — Jesus Rendon-Sifuentes | Audio Engineering & Music Production',
+        titleEs: 'Discos Rendon — Jesús Rendón-Sifuentes | Ingeniería de Audio y Producción Musical'
+      },
+      about: {
+        filename: 'about.html',
+        titleEn: 'About & Profile — Discos Rendon',
+        titleEs: 'Acerca de y Perfil — Discos Rendon'
+      },
+      experience: {
+        filename: 'experience.html',
+        titleEn: 'Professional Experience — Discos Rendon',
+        titleEs: 'Experiencia Profesional — Discos Rendon'
+      },
+      education: {
+        filename: 'education.html',
+        titleEn: 'Education & Coursework — Discos Rendon',
+        titleEs: 'Educación y Cursos — Discos Rendon'
+      },
+      skills: {
+        filename: 'skills.html',
+        titleEn: 'Technical Skills & Gear — Discos Rendon',
+        titleEs: 'Habilidades Técnicas y Equipo — Discos Rendon'
+      },
+      portfolio: {
+        filename: 'portfolio.html',
+        titleEn: 'Portfolio — Discos Rendon',
+        titleEs: 'Portafolio — Discos Rendon'
+      },
+      contact: {
+        filename: 'contact.html',
+        titleEn: 'Contact & Inquiries — Discos Rendon',
+        titleEs: 'Contacto y Consultas — Discos Rendon'
+      }
     };
+
+    function applyLanguage(lang) {
+      currentLang = (lang === 'es') ? 'es' : 'en';
+      document.documentElement.lang = currentLang;
+
+      // Translate all elements with data-en / data-es attributes
+      document.querySelectorAll('[data-en]').forEach((el) => {
+        const translated = el.getAttribute('data-' + currentLang);
+        if (translated !== null) {
+          el.innerHTML = translated;
+        }
+      });
+
+      // Translate form placeholders
+      document.querySelectorAll('[data-placeholder-en]').forEach((el) => {
+        const ph = el.getAttribute('data-placeholder-' + currentLang);
+        if (ph !== null) {
+          el.setAttribute('placeholder', ph);
+        }
+      });
+
+      // Update utility bar buttons
+      const langBtn = document.getElementById('toggleLangBtn');
+      if (langBtn) {
+        langBtn.textContent = currentLang === 'es' ? '[English]' : '[Español]';
+      }
+
+      const wrap = document.getElementById('treeStageWrap');
+      const labelsBtn = document.getElementById('toggleLabelsBtn');
+      if (wrap && labelsBtn) {
+        const showing = wrap.classList.contains('show-all-labels');
+        if (currentLang === 'es') {
+          labelsBtn.textContent = showing ? '[Ocultar Naranjas]' : '[Naranjas]';
+        } else {
+          labelsBtn.textContent = showing ? '[Hide Oranges]' : '[Oranges]';
+        }
+      }
+
+      // Refresh active portfolio tab text and page title
+      selectPortfolioTab(currentPortfolioTab);
+      const hashKey = window.location.hash.replace('#', '').toLowerCase();
+      const validKey = PAGE_MAP[hashKey] ? hashKey : 'home';
+      document.title = currentLang === 'es' ? PAGE_MAP[validKey].titleEs : PAGE_MAP[validKey].titleEn;
+
+      try {
+        localStorage.setItem('discos_rendon_lang', currentLang);
+      } catch (e) {}
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'en' ? 'es' : 'en');
+    }
 
     function renderRoute(pageKey) {
       const validKey = PAGE_MAP[pageKey] ? pageKey : 'home';
@@ -1235,7 +1319,7 @@
       }
 
       // Update document title
-      document.title = PAGE_MAP[validKey].title;
+      document.title = currentLang === 'es' ? PAGE_MAP[validKey].titleEs : PAGE_MAP[validKey].titleEn;
 
       // Scroll cleanly to top of document sheet
       window.scrollTo(0, 0);
@@ -1244,7 +1328,7 @@
     function setTreeStatus(text) {
       const bar = document.getElementById('treeStatusBar');
       if (bar) {
-        bar.textContent = 'Document: ' + text;
+        bar.textContent = (currentLang === 'es' ? 'Documento: ' : 'Document: ') + text;
       }
     }
 
@@ -1272,12 +1356,17 @@
       if (!wrap) return;
       const showing = wrap.classList.toggle('show-all-labels');
       if (btn) {
-        btn.textContent = showing ? '[Hide Oranges]' : '[Oranges]';
+        if (currentLang === 'es') {
+          btn.textContent = showing ? '[Ocultar Naranjas]' : '[Naranjas]';
+        } else {
+          btn.textContent = showing ? '[Hide Oranges]' : '[Oranges]';
+        }
       }
     }
 
     function selectPortfolioTab(tabKey) {
-      const formatsMap = {
+      currentPortfolioTab = tabKey || 'all';
+      const formatsMapEn = {
         all: 'Multitrack Sessions, Stereo & Dolby Atmos Mixes, Hardware Builds, Schematics, Live Recordings & Photography',
         studio: 'Multitrack DAW Sessions, Analog Tape Captures, Stereo & Dolby Atmos Mixes / Masters',
         electronics: 'Circuit Schematics, Custom Hardware Builds, Amplifier & Loudspeaker Design Logs',
@@ -1285,17 +1374,26 @@
         post: 'Broadcast Dialogue Edits, Sound Design Stems & Loudness-Normalized Masters',
         photography: 'Live Performance Stills, Studio Session Documentation, Analog Gear & Visual Archives'
       };
+      const formatsMapEs = {
+        all: 'Sesiones Multipista, Mezclas Estéreo y Dolby Atmos, Diseños de Hardware, Esquemas, Grabaciones en Vivo y Fotografía',
+        studio: 'Sesiones DAW Multipista, Capturas en Cinta Analógica, Mezclas y Masterizaciones Estéreo y Dolby Atmos',
+        electronics: 'Esquemas de Circuitos, Diseños de Hardware Personalizados y Registros de Diseño de Amplificadores y Altavoces',
+        live: 'Capturas de Mezcla FOH / Monitores, Stage Plots, Listas de Parcheo E/S y Grabaciones de Conciertos en Vivo',
+        post: 'Ediciones de Diálogo para Transmisión, Stems de Diseño Sonoro y Masterizaciones Normalizadas',
+        photography: 'Fotografías de Presentaciones en Vivo, Documentación de Sesiones de Estudio, Equipo Analógico y Archivos Visuales'
+      };
+      const formatsMap = currentLang === 'es' ? formatsMapEs : formatsMapEn;
       ['all', 'studio', 'electronics', 'live', 'post', 'photography'].forEach((key) => {
         const tabEl = document.getElementById('ptab-' + key);
-        if (tabEl) tabEl.classList.toggle('current-page', key === tabKey);
+        if (tabEl) tabEl.classList.toggle('current-page', key === currentPortfolioTab);
       });
       const rows = document.querySelectorAll('#view-portfolio tbody tr[data-ptab]');
       rows.forEach((row) => {
-        row.style.display = (tabKey === 'all' || row.dataset.ptab === tabKey) ? '' : 'none';
+        row.style.display = (currentPortfolioTab === 'all' || row.dataset.ptab === currentPortfolioTab) ? '' : 'none';
       });
       const formatsCell = document.getElementById('portfolioFormatsCell');
-      if (formatsCell && formatsMap[tabKey]) {
-        formatsCell.textContent = formatsMap[tabKey];
+      if (formatsCell && formatsMap[currentPortfolioTab]) {
+        formatsCell.textContent = formatsMap[currentPortfolioTab];
       }
     }
 
@@ -1452,25 +1550,39 @@
       const service = document.getElementById('inqService').value;
       const details = document.getElementById('inqDetails').value.trim();
       const feedback = document.getElementById('inquiryFeedback');
-      const subject = encodeURIComponent('Discos Rendon Inquiry: ' + service + ' (' + name + ')');
+      const subject = encodeURIComponent(
+        (currentLang === 'es' ? 'Consulta Discos Rendon: ' : 'Discos Rendon Inquiry: ') + service + ' (' + name + ')'
+      );
       const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Return Email: ' + email + '\n' +
-        'Project / Service: ' + service + '\n\n' +
-        'Project Details:\n' + details
+        (currentLang === 'es' ? 'Nombre: ' : 'Name: ') + name + '\n' +
+        (currentLang === 'es' ? 'Correo de Respuesta: ' : 'Return Email: ') + email + '\n' +
+        (currentLang === 'es' ? 'Proyecto / Servicio: ' : 'Project / Service: ') + service + '\n\n' +
+        (currentLang === 'es' ? 'Detalles del Proyecto:\n' : 'Project Details:\n') + details
       );
       window.location.href = 'mailto:Jesusrendon1022@gmail.com?subject=' + subject + '&body=' + body;
       if (feedback) {
         feedback.style.display = 'block';
-        feedback.innerHTML =
-          '<b>[INQUIRY PREPARED]</b> Thank you, ' + name + '. Your e-mail client has been opened with your inquiry regarding <i>' +
-          service + '</i> addressed to <b>Jesusrendon1022@gmail.com</b> (Return: ' + email + ').';
+        if (currentLang === 'es') {
+          feedback.innerHTML =
+            '<b>[CONSULTA PREPARADA]</b> Gracias, ' + name + '. Se ha abierto tu cliente de correo con tu consulta sobre <i>' +
+            service + '</i> dirigida a <b>Jesusrendon1022@gmail.com</b> (Respuesta: ' + email + ').';
+        } else {
+          feedback.innerHTML =
+            '<b>[INQUIRY PREPARED]</b> Thank you, ' + name + '. Your e-mail client has been opened with your inquiry regarding <i>' +
+            service + '</i> addressed to <b>Jesusrendon1022@gmail.com</b> (Return: ' + email + ').';
+        }
       }
     }
 
-    // Initialize saved images and active route on page load
+    // Initialize saved images, saved language, and active route on page load
     window.addEventListener('DOMContentLoaded', () => {
       restoreSavedImages();
+      try {
+        const savedLang = localStorage.getItem('discos_rendon_lang');
+        if (savedLang === 'es' || savedLang === 'en') {
+          applyLanguage(savedLang);
+        }
+      } catch (e) {}
       const initialHash = window.location.hash.replace('#', '').toLowerCase();
       renderRoute(initialHash || 'home');
     });
