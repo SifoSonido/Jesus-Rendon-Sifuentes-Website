@@ -586,33 +586,6 @@
       width: 100%;
     }
 
-    /* Text-Only Mode Overrides */
-    body.text-only-mode {
-      background-color: #FFFFFF;
-    }
-    body.text-only-mode .page-sheet {
-      border: none;
-      box-shadow: none;
-    }
-    body.text-only-mode .ibm-stripe-bar,
-    body.text-only-mode .ibm-thin-stripe,
-    body.text-only-mode .visual-asset {
-      display: none !important;
-    }
-    body.text-only-mode .text-only-banner,
-    body.text-only-mode .text-only-home-links {
-      display: block !important;
-    }
-    .text-only-banner,
-    .text-only-home-links {
-      display: none;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 13px;
-      padding: 6px;
-      border: 1px dashed #666666;
-      margin-bottom: 10px;
-    }
-
     /* Page View Visibility */
     .subpage-view {
       display: none;
@@ -666,15 +639,11 @@
   <!-- CENTERED 780px 1994 DOCUMENT SHEET -->
   <div class="page-sheet">
 
-    <!-- TOP 1994 BROWSER LOCATION BAR & TEXT-ONLY TOGGLE -->
-    <div class="utility-bar">
-      <div class="util-flex" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <div>
-          <b>Location:</b> <span id="locationUrl">http://www.discosrendon.com/index.html</span>
-        </div>
+    <!-- TOP 1994 BROWSER UTILITY BAR -->
+    <div id="topUtilityBar" class="utility-bar">
+      <div class="util-flex" style="display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap;">
         <div style="display: flex; gap: 6px; flex-wrap: wrap;">
           <button type="button" id="toggleLabelsBtn" class="util-btn util-btn-orange" onclick="toggleOrangeLabels()">[Oranges]</button>
-          <button type="button" id="textOnlyBtn" class="util-btn" onclick="toggleTextOnlyMode()">[Text-Only Mode]</button>
         </div>
       </div>
     </div>
@@ -692,29 +661,11 @@
     <!-- MAIN DOCUMENT CONTENT AREA -->
     <main id="mainDocBody" class="doc-body home-minimal-body">
 
-      <div class="text-only-banner">
-        [TEXT-ONLY MODE ACTIVE &mdash; GRAPHICS HIDDEN FOR FAST 14.4k MODEM BROWSING]
-      </div>
-
       <!-- ====================================================================
            PAGE 1: MAIN HOMEPAGE (#home / index.html)
            ONLY THE LOGO + CLICKABLE ORANGES AS DIRECTORY TABS
            ==================================================================== -->
       <section id="view-home" class="subpage-view active-view">
-        <!-- Top 1994 IBM-Style Olive-Bark & Tangerine Horizontal Striped Divider -->
-        <div class="ibm-stripe-bar" style="margin-top: 2px;"></div>
-
-        <!-- Text-Only Mode Fallback Links (Hidden in normal graphics mode) -->
-        <div class="text-only-home-links">
-          <b>DISCOS RENDON &mdash; TEXT DIRECTORY:</b><br>
-          &bull; <a href="#about" onclick="navigateTo('about'); return false;">About &amp; Profile (about.html)</a><br>
-          &bull; <a href="#experience" onclick="navigateTo('experience'); return false;">Professional Experience (experience.html)</a><br>
-          &bull; <a href="#education" onclick="navigateTo('education'); return false;">Education &amp; Coursework (education.html)</a><br>
-          &bull; <a href="#skills" onclick="navigateTo('skills'); return false;">Technical Skills &amp; Gear (skills.html)</a><br>
-          &bull; <a href="#portfolio" onclick="navigateTo('portfolio'); return false;">Portfolio (portfolio.html)</a><br>
-          &bull; <a href="#contact" onclick="navigateTo('contact'); return false;">Contact &amp; Inquiries (contact.html)</a>
-        </div>
-
         <!-- Centered High-Resolution "discos Rendon" Tree Logo with Symmetrical Clickable Orange Directory Tabs -->
         <div class="visual-asset" style="text-align: center; padding: 4px 0;">
           <div id="treeStageWrap" class="tree-stage-wrap" style="min-height: 440px; border: 1px dashed #B5B096; background-color: transparent; display: flex; align-items: center; justify-content: center;" ondragover="event.preventDefault()" ondrop="handleImageDrop(event, 'logo')">
@@ -801,9 +752,6 @@
             </a>
           </div>
         </div>
-
-        <!-- Bottom 1994 IBM-Style Olive-Bark & Tangerine Horizontal Striped Divider -->
-        <div class="ibm-stripe-bar" style="margin-bottom: 4px;"></div>
       </section>
 
       <!-- ====================================================================
@@ -1258,11 +1206,13 @@
       });
 
       // Keep Main Homepage ultra-clean (only the tree logo + orange tabs)
+      const topUtilityBar = document.getElementById('topUtilityBar');
       const subHeader = document.getElementById('subpageHeader');
       const botNav = document.getElementById('bottomSubpageNav');
       const toggleLabelsBtn = document.getElementById('toggleLabelsBtn');
       const docBody = document.getElementById('mainDocBody');
 
+      if (topUtilityBar) topUtilityBar.style.display = isHome ? 'block' : 'none';
       if (subHeader) subHeader.style.display = isHome ? 'none' : 'block';
       if (botNav) botNav.style.display = isHome ? 'none' : 'block';
       if (toggleLabelsBtn) toggleLabelsBtn.style.display = isHome ? 'inline-block' : 'none';
@@ -1270,11 +1220,7 @@
         docBody.classList.toggle('home-minimal-body', isHome);
       }
 
-      // Update 1994 Location URL bar and document title
-      const locEl = document.getElementById('locationUrl');
-      if (locEl) {
-        locEl.textContent = 'http://www.discosrendon.com/' + PAGE_MAP[validKey].filename;
-      }
+      // Update document title
       document.title = PAGE_MAP[validKey].title;
 
       // Scroll cleanly to top of document sheet
@@ -1354,18 +1300,7 @@
     });
 
     /**
-     * 2. TEXT-ONLY MODE TOGGLE (CLASSIC 1994 ACCESSIBILITY FEATURE)
-     */
-    function toggleTextOnlyMode() {
-      const isTextOnly = document.body.classList.toggle('text-only-mode');
-      const btn = document.getElementById('textOnlyBtn');
-      if (btn) {
-        btn.textContent = isTextOnly ? '[Graphics Mode]' : '[Text-Only Mode]';
-      }
-    }
-
-    /**
-     * 3. HIGH-RESOLUTION IMAGE LOADING & LOCAL FILE PERSISTENCE (NO DRAWN FALLBACK)
+     * 2. HIGH-RESOLUTION IMAGE LOADING & LOCAL FILE PERSISTENCE (NO DRAWN FALLBACK)
      */
     function handleImageFallback(imgEl, kind) {
       const candidates = kind === 'logo'
@@ -1477,7 +1412,7 @@
     }
 
     /**
-     * 4. CONTACT FORM & CLIPBOARD UTILITIES
+     * 3. CONTACT FORM & CLIPBOARD UTILITIES
      */
     function copyEmailAddress() {
       const email = 'Jesusrendon1022@gmail.com';
