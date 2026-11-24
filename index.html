@@ -66,10 +66,13 @@
     .page-sheet {
       width: 100%;
       max-width: none;
+      min-height: 100vh;
       margin: 0;
       background-color: transparent;
       border: none;
       box-shadow: none;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Top 1994 Browser Location & Text-Only Utility Strip */
@@ -231,17 +234,26 @@
 
     /* Main Content Padding */
     .doc-body {
+      flex: 1 0 auto;
+      width: 100%;
       padding: 20px 32px 28px 32px;
     }
     .doc-body.home-minimal-body {
-      padding: 14px 24px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 24px 20px 24px;
+    }
+    .doc-body.home-minimal-body #view-home {
+      width: 100%;
     }
 
     /* Interactive Tree Logo Stage & Clickable Orange Directory Hotspots */
     .tree-stage-wrap {
       position: relative;
       width: 100%;
-      max-width: 660px;
+      max-width: min(820px, 74vh);
       margin: 0 auto;
       user-select: none;
     }
@@ -596,6 +608,8 @@
 
     /* Footer */
     .doc-footer {
+      flex-shrink: 0;
+      width: 100%;
       background-color: #F3ECDC;
       border-top: 1px solid #C7BCA7;
       padding: 10px 16px 14px 16px;
@@ -693,7 +707,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/about.html — About & Profile (Jesus Rendon-Sifuentes)')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('about'); return false;">
-              <span class="orange-tag">About &amp; Profile<span class="tag-file">about.html</span></span>
+              <span class="orange-tag">About &amp; Profile</span>
             </a>
 
             <!-- ROW 1 (UPPER CANOPY ORANGES) — RIGHT: EXPERIENCE (Exact Orange at ~22.5% Y, 58.2% X) -->
@@ -704,7 +718,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/experience.html — Live Sound, Studio & AV Work Experience')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('experience'); return false;">
-              <span class="orange-tag">Experience<span class="tag-file">experience.html</span></span>
+              <span class="orange-tag">Experience</span>
             </a>
 
             <!-- ROW 2 (MIDDLE CANOPY ORANGES) — LEFT: EDUCATION (Exact Orange at ~34.5% Y, 40.8% X) -->
@@ -715,7 +729,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/education.html — Berklee College of Music & Coursework')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('education'); return false;">
-              <span class="orange-tag">Education<span class="tag-file">education.html</span></span>
+              <span class="orange-tag">Education</span>
             </a>
 
             <!-- ROW 2 (MIDDLE CANOPY ORANGES) — RIGHT: TECHNICAL SKILLS (Exact Orange at ~32.5% Y, 60.1% X) -->
@@ -726,7 +740,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/skills.html — Consoles, DAWs, Spatial Audio & Electronics')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('skills'); return false;">
-              <span class="orange-tag">Technical Skills<span class="tag-file">skills.html</span></span>
+              <span class="orange-tag">Technical Skills</span>
             </a>
 
             <!-- ROW 3 (LOWER CANOPY ORANGES) — LEFT: PORTFOLIO (Exact Orange at ~44.8% Y, 33.2% X) -->
@@ -737,7 +751,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/portfolio.html — Audio Electronics & Music Production Portfolio')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('portfolio'); return false;">
-              <span class="orange-tag">Portfolio<span class="tag-file">portfolio.html</span></span>
+              <span class="orange-tag">Portfolio</span>
             </a>
 
             <!-- ROW 3 (LOWER CANOPY ORANGES) — RIGHT: CONTACT (Exact Orange at ~44.6% Y, 63.5% X) -->
@@ -748,7 +762,7 @@
                onmouseenter="setTreeStatus('http://www.discosrendon.com/contact.html — Direct Contact & Studio Booking')"
                onmouseleave="resetTreeStatus()"
                onclick="navigateTo('contact'); return false;">
-              <span class="orange-tag">Contact<span class="tag-file">contact.html</span></span>
+              <span class="orange-tag">Contact</span>
             </a>
           </div>
         </div>
